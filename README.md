@@ -1,14 +1,16 @@
 # Docker - Mesa 3D OpenGL Software Rendering (Gallium) - LLVMpipe, and OpenSWR Drivers
 
-[![CircleCI](https://circleci.com/gh/utensils/docker-opengl.svg?style=svg)](https://circleci.com/gh/utensils/docker-opengl) [![Docker Automated build](https://img.shields.io/docker/automated/utensils/opengl.svg)](https://hub.docker.com/r/utensils/opengl/) [![Docker Pulls](https://img.shields.io/docker/pulls/utensils/opengl.svg)](https://hub.docker.com/r/utensils/opengl/) [![Docker Stars](https://img.shields.io/docker/stars/utensils/opengl.svg)](https://hub.docker.com/r/utensils/opengl/) [![](https://images.microbadger.com/badges/image/utensils/opengl.svg)](https://microbadger.com/images/utensils/opengl "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/utensils/opengl.svg)](https://microbadger.com/images/utensils/opengl "Get your own version badge on microbadger.com")
-
 ## About
 
-Minimal Docker container bundled with the Mesa 3D Gallium Drivers: [LLVMpipe][mesa-llvm] & [OpenSWR][openswr], enabling OpenGL support inside a Docker container **without the need for a GPU**.
+Docker container bundled with the Mesa 3D Gallium Drivers: [LLVMpipe][mesa-llvm] & [OpenSWR][openswr], enabling OpenGL support inside a Docker container **without the need for a GPU**.
+
+Modified to run ubuntu instead of alpine, and not very lightweight anymore. Reason for the fork is to generate a factorio maps webpage from my VPS without GPU support. Might contain installation of packages that are not needed for general purpose.
+
+Forked from: https://github.com/utensils/docker-opengl
 
 ## Features
 
-- Alpine Linux 3.10
+- Ubuntu 18.04
 - LLVMpipe Driver (Mesa 19.0.8)
 - OpenSWR Driver (Mesa 19.0.8)
 - OSMesa Interface (Mesa 19.0.8)
@@ -18,13 +20,13 @@ Minimal Docker container bundled with the Mesa 3D Gallium Drivers: [LLVMpipe][me
 
 ## Docker Images
 
-| Image                    | Description             |
-| ------------------------ | ----------------------- |
-| `utensils/opengl:latest` | Latest/Dev Mesa version |
-| `utensils/opengl:stable` | Stable Mesa version     |
-| `utensils/opengl:19.0.8` | Mesa version **19.0.8** |
-| `utensils/opengl:18.3.6` | Mesa version **18.3.6** |
-| `utensils/opengl:18.2.8` | Mesa version **18.2.8** |
+| Image                       | Description             |
+| --------------------------- | ----------------------- |
+| `robinastedt/opengl:latest` | Latest/Dev Mesa version |
+| `robinastedt/opengl:stable` | Stable Mesa version     |
+| `robinastedt/opengl:19.0.8` | Mesa version **19.0.8** |
+| `robinastedt/opengl:18.3.6` | Mesa version **18.3.6** |
+| `robinastedt/opengl:18.2.8` | Mesa version **18.2.8** |
 
 ## Building
 
@@ -52,7 +54,7 @@ This image is intended to be used as a base image to extend from. One good examp
 Extending from this image.
 
 ```Dockerfile
-FROM utensils/opengl:19.0.8
+FROM robinastedt/opengl:19.0.8
 COPY ./MyAppOpenGLApp /AnywhereMyHeartDesires
 RUN apk add --update my-deps...
 ```
